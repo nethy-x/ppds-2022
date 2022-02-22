@@ -16,6 +16,8 @@ class Shared():
         size of shared data
     elms : list
         elements in shared data
+    mutex : Mutex
+        wrapper for the lock class 
     """
 
     def __init__(self, size):
