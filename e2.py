@@ -3,6 +3,10 @@ from time import sleep
 from fei.ppds import Thread, Semaphore, Mutex, Event
 from fei.ppds import print
 
+"""Program with implemented cyclic barrier 
+    and used Event or Semaphore for synchronization
+"""
+
 
 class SimpleBarrier:
     """

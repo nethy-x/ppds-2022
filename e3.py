@@ -3,6 +3,10 @@ from random import randint
 from time import sleep
 from fei.ppds import print
 
+"""Program with implemented function compute fibonacci  
+    sequence and used Semaphore or Event for synchronization
+"""
+
 
 class Adt:
     """
