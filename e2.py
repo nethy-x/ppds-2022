@@ -57,7 +57,7 @@ class SimpleBarrier:
         -------
         None
         """
-    
+
         self.M.lock()
         self.T.clear()
         self.C += 1
@@ -68,7 +68,7 @@ class SimpleBarrier:
         self.T.wait()
 
 
-def rendzevous(thread_id):
+def rendezvous(thread_id):
     """
     Writes out thread id before barrier.
 
@@ -112,7 +112,7 @@ def barrier_cycle(barrier1, barrier2, thread_id):
     """
 
     while True:
-        rendzevous(thread_id)
+        rendezvous(thread_id)
         barrier1.wait()
         ko(thread_id)
         barrier2.wait()
