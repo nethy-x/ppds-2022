@@ -58,7 +58,6 @@ class SimpleBarrier:
         None
         """
         self.M.lock()
-        self.T.clear()
         self.C += 1
         if self.C == self.N:
             self.C = 0
