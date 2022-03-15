@@ -83,6 +83,60 @@ class LightSwitch:
         self.mutex.unlock()
 
 
+class SimpleBarrier:
+    """
+    A class to represent a barrier.
+    Attributes
+    ----------
+    N : int
+        number of threads
+    C : int
+         counter for blocked threads
+    M : Mutex()
+        wrapper for the lock class
+    T : Event()
+        signalization util
+    Methods
+    -------
+    wait():
+        Represents the barrier's turnstile.
+    """
+
+    def __init__(self, N):
+        """
+        Constructs all the necessary attributes for the SimpleBarrier data object.
+        Parameters
+        ----------
+            N : int
+                number of threads
+        """
+        self.N = N
+        self.C = 0
+        self.M = Mutex()
+        # self.T = Semaphore(0)
+        self.T = Event()
+
+    def wait(self):
+        """
+        Locks program until all of threads complete turnstile. 
+        Parameters
+        ----------
+        None
+        Returns
+        -------
+        None
+        """
+
+        self.M.lock()
+        self.T.clear()
+        self.C += 1
+        if self.C == self.N:
+            self.C = 0
+            self.T.signal()
+        self.M.unlock()
+        self.T.wait()
+
+
 def monitor(monitor_id, turnstile, ls_monitor, valid_data, access_data):
     """
     Function represents monitors of nuclear plant operators
@@ -114,7 +168,7 @@ def monitor(monitor_id, turnstile, ls_monitor, valid_data, access_data):
         ls_monitor.unlock(access_data)
 
 
-def sensor(sensor_id, turnstile, ls_sensor, valid_data, access_data):
+def sensor(sensor_id, turnstile, ls_sensor, valid_data, access_data, barrier):
     """
     Function represents sensors of nuclear plant 
             Parameters:
@@ -126,26 +180,34 @@ def sensor(sensor_id, turnstile, ls_sensor, valid_data, access_data):
             Returns:
                     None
     """
+    i = 0
     while True:
+        # sensor update
         sleep(randint(50, 60) / 1000)
 
         # sensors pass through the turnstile until it is locked by the monitor
         turnstile.wait()
         turnstile.signal()
 
-        # gettig access to "storage"
+        # getting access to "storage"
         count_write_sensors = ls_sensor.lock(access_data)
 
         # data access simulated by waiting at intervals,
         # data update itself takes 10-20 ms for sensor_id 0 and sensor_id 1, but 20-25 ms for sensor_id 2.
-        if(sensor_id == 2):
-            write_time = randint(20, 25) / 1000
         write_time = randint(10, 20) / 1000
+        if sensor_id == 2:
+            write_time = randint(20, 25) / 1000
 
         # according to the task specification, we inform about the sensor and the entry to be made
         print(
             f'Sensor {sensor_id:02d} :  count_write_sensors={count_write_sensors:02d}, write_time={write_time:5.3f}')
+        # write time sleep
         sleep(write_time)
+
+        # implement barrier so they all enter data by writing
+        if i == 0:
+            barrier.wait()
+        i += 1
         # after entering the data, we signal that the data is valid
         valid_data.signal()
         # we're leaving the "storage" away
@@ -153,18 +215,20 @@ def sensor(sensor_id, turnstile, ls_sensor, valid_data, access_data):
 
 
 def init():
+    SENSORS = 3
     access_data = Semaphore(1)
     turnstile = Semaphore(1)
     ls_monitor = LightSwitch()
     ls_sensor = LightSwitch()
     valid_data = Event()
+    barrier = SimpleBarrier(SENSORS)
 
     for monitor_id in range(8):
         Thread(monitor, monitor_id,
                turnstile, ls_monitor, valid_data, access_data)
-    for sensor_id in range(3):
+    for sensor_id in range(SENSORS):
         Thread(sensor, sensor_id,
-               turnstile, ls_sensor, valid_data, access_data)
+               turnstile, ls_sensor, valid_data, access_data, barrier)
 
 
 if __name__ == '__main__':
