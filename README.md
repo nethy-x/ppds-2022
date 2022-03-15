@@ -1,4 +1,4 @@
-# Assignment 03
+# Assignment 04
 
 [![python](https://img.shields.io/badge/python%20-3.8.8-green.svg)](https://www.python.org/)
 [![Conventional Commits](https://img.shields.io/badge/Conventional%20Commits-1.0.0-green.svg)](https://conventionalcommits.org)
@@ -9,7 +9,7 @@ More information about assignment at [4. excercise – Dining philosophers, Atom
 # About
 
 This assignment consist of 3 exercises.
-We did document 2nd exercise type 2. We also wrote analysis of synchronization tools and wrote the pseudocode for implementation. We also constructed a model in Python language from pseudocode.
+We did document 2nd exercise of type 2. We also wrote analysis of synchronization tools and wrote the pseudocode for implementation. We also constructed a model in Python language from pseudocode.
 
 - The 1st exercise with Dining philosopers synchronization problem is in [e1.py](e1.py).
 - The 2nd type 1 exercise with Atomic power plant simulation [e2_1.py](e2_1.py).
@@ -23,7 +23,7 @@ We didnt implement a solution to the dinner philosophers' synchronization proble
 
 ---
 
-## Exercise 2 - #2
+## Exercise 2 - #1
 
 We implemented the solution for Atomic power plant simulation from lecture.
 
