@@ -1,8 +1,8 @@
 """Nuclear Power Plant #1
 
-This script allows the user to experiment with specific excercise about 
+This script allows the user to experiment with specific excercise about
 modelled processes in a nuclear power plant
- 
+
 This script requires that `fei.ppds` to be installed within the Python
 environment you are running this script in.
 
@@ -104,9 +104,11 @@ def monitor(monitor_id, turnstile, ls_monitor, valid_data, access_data):
             Parameters:
                     monitor_id (): variable, represents identifier of monitor
                     turnstile (Semaphore): semaphore, represents turnstile
-                    ls_monitor (LightSwitch): light switch, represents light switch for monitor
+                    ls_monitor (LightSwitch): light switch, represents light
+                        switch for monitor
                     valid_data (Event): event, represents validation data
-                    access_data (Semaphore): semaphore, represents data to work with
+                    access_data (Semaphore): semaphore, represents data to
+                        work with
             Returns:
                     None
     """
@@ -124,20 +126,23 @@ def monitor(monitor_id, turnstile, ls_monitor, valid_data, access_data):
 
         # data access simulated by the following statement
         print(
-            f'Monitor {monitor_id:02d} : count_read_monitors={count_read_monitors:02d}')
+            f'Monitor {monitor_id:02d} :'
+            f'count_read_monitors={count_read_monitors: 02d}')
         # we have updated the data, we are leaving the repository
         ls_monitor.unlock(access_data)
 
 
 def sensor(sensor_id, turnstile, ls_sensor, valid_data, access_data):
     """
-    Function represents sensors of nuclear plant 
+    Function represents sensors of nuclear plant
             Parameters:
                     sensor_id (): variable, represents identifier of sensor
                     turnstile (Semaphore): semaphore, represents turnstile
-                    ls_sensor (LightSwitch): light switch, represents light switch for sensor
+                    ls_sensor (LightSwitch): light switch, represents light
+                        switch for sensor
                     valid_data (Event): event, represents validation data
-                    access_data (Semaphore): semaphore, represents data to work with
+                    access_data (Semaphore): semaphore, represents data to
+                        work with
             Returns:
                     None
     """
@@ -152,9 +157,12 @@ def sensor(sensor_id, turnstile, ls_sensor, valid_data, access_data):
         # data access simulated by waiting at interval 10 - 15 ms
         write_time = randint(10, 15) / 1000
 
-        # according to the task specification, we inform about the sensor and the entry to be made
+        # according to the task specification, we inform about the sensor
+        # and the entry to be made
         print(
-            f'Sensor {sensor_id:02d} :  count_write_sensors={count_write_sensors:02d}, write_time={write_time:5.3f}')
+            f'Sensor {sensor_id:02d} : '
+            f'count_write_sensors={count_write_sensors:02d}, '
+            f'write_time={write_time:5.3f}')
         sleep(write_time)
         # after entering the data, we signal that the data is valid
         valid_data.signal()

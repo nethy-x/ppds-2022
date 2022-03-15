@@ -1,15 +1,15 @@
 """Dining philosophers
 
-This script allows the user to experiment with dining philosophers synchronization 
-problem.
- 
+This script allows the user to experiment with dining philosophers
+synchronization problem.
+
 This script requires that `fei.ppds` to be installed within the Python
 environment you are running this script in.
 
 This file can also be imported as a module and contains the following
 functions:
     * phil
-    * think 
+    * think
     * eat
     * get_forks
     * put_forks
@@ -27,9 +27,11 @@ PHIL_NUM = 5
 
 def phil(forks, footman, p_id):
     """
-    Function represents philosophers that thinks, gets forks, eats and puts forks
+    Function represents philosophers that thinks, gets forks,
+        eats and puts forks
             Parameters:
-                    forks (Array(Semaphore)): array of semaphores, represents forks
+                    forks (Array(Semaphore)): array of semaphores,
+                        represents forks
                     footman (Semaphore): semaphore, represents footman
                     p_id (int): variable, represents identifier of philosopher
             Returns:
@@ -71,7 +73,8 @@ def get_forks(forks, footman, p_id):
     """
     Function represents philosophers getting up the forks
             Parameters:
-                    forks (Array(Semaphore)): array of semaphores, represents forks
+                    forks (Array(Semaphore)): array of semaphores,
+                        represents forks
                     footman (Semaphore): semaphore, represents footman
                     p_id (int): variable, represents identifier of philosopher
             Returns:
@@ -88,7 +91,8 @@ def put_forks(forks, footman, p_id):
     """
     Function represents philosophers putting down the forks
             Parameters:
-                    forks (Array(Semaphore)): array of semaphores, represents forks
+                    forks (Array(Semaphore)): array of semaphores,
+                        represents forks
                     footman (Semaphore): semaphore, represents footman
                     p_id (int): variable, represents identifier of philosopher
             Returns:
