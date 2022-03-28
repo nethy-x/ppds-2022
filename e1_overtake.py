@@ -1,12 +1,12 @@
 """Barber shop problem with overtaking
-This script allows the user to experiment with less classical 
+This script allows the user to experiment with less classical
 synchronization problems,
 This script requires that `fei.ppds` to be installed within the Python
 environment you are running this script in.
 This file can also be imported as a module and contains the following
 functions and class:
     # BarberShop
-    * barber
+    * barbers
     * cut_hair
     * get_hair_cut
     * customer
@@ -71,7 +71,8 @@ def barber(barber_shop):
     """
     Function represents barber cutting hair and calling for next customer
             Parameters:
-                    barber_shop (BarberShop): shared object, represents barber shop
+                    barber_shop (BarberShop): shared object,
+                        represents barber shop
             Returns:
                     None
     """
@@ -103,7 +104,8 @@ def get_hair_cut(custom_id):
     """
     Function represents customers time consuption of getting haircut
             Parameters:
-                    custom_id (int): variable, represents identifier of customer
+                    custom_id (int): variable,
+                        represents identifier of customer
             Returns:
                     None
     """
@@ -113,9 +115,11 @@ def get_hair_cut(custom_id):
 
 def customer(barber_shop, customer_id):
     """
-    Function represents customer coming to shop, getting haircut and leaving barber shop
+    Function represents customer coming to shop,
+    getting haircut and leaving barber shop
             Parameters:
-                    barber_shop (BarberShop): shared object, represents barber shop
+                    barber_shop (BarberShop): shared object,
+                        represents barber shop
             Returns:
                     None
     """
@@ -130,7 +134,9 @@ def customer(barber_shop, customer_id):
         print(
             f"🧒 Customer {customer_id}: Hello gentlemen.")
         print(
-            f"💈 Barber shop has {barber_shop.chairs - barber_shop.customers_number} chairs left.")
+            f"💈 Barber shop has"
+            f" {barber_shop.chairs - barber_shop.customers_number}"
+            f" chairs left.")
         barber_shop.mutex.unlock()
 
         barber_shop.customer.signal()
@@ -146,7 +152,9 @@ def customer(barber_shop, customer_id):
         print(
             f"👦 Customer {customer_id}: Hair cut is good. Goodbye! ")
         print(
-            f"💈 Barber shop has {barber_shop.chairs - barber_shop.customers_number} chairs left.")
+            f"💈 Barber shop has"
+            f" {barber_shop.chairs - barber_shop.customers_number}"
+            f" chairs left.")
         barber_shop.mutex.unlock()
 
 
