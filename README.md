@@ -99,7 +99,7 @@ We did implement it with using FIFO Semaphore from ['fei.ppds'](https://pypi.org
     END FUNCTION
 
 
-    FUNCTION cook():
+    FUNCTION customer():
         WHILE True:
             mutex.lock()
             if customers == chairs:
