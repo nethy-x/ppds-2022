@@ -1,25 +1,25 @@
-"""Scheduler
+"""Cooperative Concurrency With Non-Blocking Calls
 This file can also be imported as a module and contains the following
-functions and class:
-    # BarberShop
-    * barbers
-    * cut_hair
-    * get_hair_cut
-    * customer
+functions:
+    * task
+    * main
 """
 
 import asyncio
 import time
 
-__author__ = "Juraj Budai"
+__author__ = "Matúš Jokáy, Juraj Budai"
 
 
 async def task(name, work_queue):
     """
-    Function represents customers time consuption of getting haircut
+    This function pulls work out of work_queue and processes 
+    the work until there is not any more to do.
             Parameters:
-                    custom_id (int): variable,
-                        represents identifier of customer
+                    name (string): variable,
+                        represents identifier of task
+                    work_queue (Queue): count of values
+                        for the tasks to process
             Returns:
                     None
     """
@@ -37,14 +37,6 @@ async def task(name, work_queue):
 
 
 async def main():
-    """
-    Function represents customers time consuption of getting haircut
-            Parameters:
-                    custom_id (int): variable,
-                        represents identifier of customer
-            Returns:
-                    None
-    """
     work_queue = asyncio.Queue()
 
     for work in (5, 3, 4, 1):
