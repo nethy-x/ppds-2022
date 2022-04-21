@@ -13,7 +13,7 @@ __author__ = "Matúš Jokáy, Juraj Budai"
 
 async def task(name, work_queue):
     """
-    This function pulls work out of work_queue and processes 
+    This function pulls work out of work_queue and processes
     the work until there is not any more to do.
             Parameters:
                     name (string): variable,

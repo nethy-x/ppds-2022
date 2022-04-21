@@ -12,7 +12,7 @@ import time
 
 def make_fact(name, n):
     """
-    This function calculate the factorial of given value 
+    This function calculate the factorial of given value
             Parameters:
                     name (string): variable,
                         represents identifier of task

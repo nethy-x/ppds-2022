@@ -1,6 +1,6 @@
 """Synchronous (Blocking) HTTP Calls
 The program is doing some actual work with real IO by making HTTP requests
-to a list of URLs and getting the page contents. 
+to a list of URLs and getting the page contents.
 However, it’s doing so in a blocking (synchronous) manner.
 This file can also be imported as a module and contains the following
 functions:
@@ -17,7 +17,7 @@ __author__ = "Matúš Jokáy, Juraj Budai"
 
 def task(name, work_queue):
     """
-    This function pulls work out of work_queue and processes 
+    This function pulls work out of work_queue and processes
     the work until there is not any more to do.
             Parameters:
                     name (string): variable,

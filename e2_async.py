@@ -1,5 +1,6 @@
 """Asynchronous (Non-Blocking) HTTP Calls
-This version of the program modifies the previous one to use Python async features.
+This version of the program modifies the previous one to use
+Python async features.
 It also imports the aiohttp module, which is a library to make HTTP requests
 in an asynchronous fashion using asyncio.
 This file can also be imported as a module and contains the following
@@ -17,7 +18,7 @@ __author__ = "Matúš Jokáy, Juraj Budai"
 
 async def task(name, work_queue):
     """
-    This function pulls work out of work_queue and processes 
+    This function pulls work out of work_queue and processes
     the work until there is not any more to do.
             Parameters:
                     name (string): variable,
